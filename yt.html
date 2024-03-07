@@ -77,3 +77,93 @@
 
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pinned Videos Menu</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .pinned-videos-menu {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        background-color: #f4f4f4;
+        padding: 8px;
+        border-left: 1px solid #ccc;
+        border-top: 1px solid #ccc;
+        z-index: 1000;
+    }
+
+    .pinned-videos-menu .menu-icon {
+        cursor: pointer;
+    }
+
+    .pinned-videos-menu .videos-list {
+        display: none;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .pinned-videos-menu .videos-list li {
+        margin-bottom: 3px;
+    }
+
+    .pinned-videos-menu .videos-list li a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    /* Adjustments for iframe size */
+    #video-iframe {
+        width: 800px;
+        height: 450px;
+        margin: 20px; /* Adjust margin for better centering */
+    }
+</style>
+</head>
+<body>
+
+<div class="pinned-videos-menu">
+    <div class="menu-icon">&#9776;</div>
+    <ul class="videos-list">
+        <li><a href="https://www.youtube.com/embed/videoseries?list=PLjPG8IW_5dbBJP0WHvRROgKxVSZ08sAhn">Niebezpiecznt Henryk</a></li>
+        <li><a href="https://www.youtube.com/embed/videoseries?list=PLjPG8IW_5dbAVB2KxkjJCXbOe_PpgTvUy">Grzmotomocni</a></li>
+        <li><a href="https://www.youtube.com/embed/mwM67EbI1RM">Spongebob</a></li>
+        <li><a href="https://www.youtube.com/embed/videoseries?list=UULPy0utUYXFgrJ-uDGpA3A4WQ">Gumball</a></li>
+    </ul>
+</div>
+
+<iframe id="video-iframe" src="https://www.youtube.com/embed/videoseries?list=PLjPG8IW_5dbBJP0WHvRROgKxVSZ08sAhn" frameborder="0" sandbox="allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation"></iframe>
+
+<script>
+    const menuIcon = document.querySelector('.menu-icon');
+    const videosList = document.querySelector('.videos-list');
+    const videoIframe = document.getElementById('video-iframe');
+
+    menuIcon.addEventListener('click', () => {
+        videosList.style.display = (videosList.style.display === 'block') ? 'none' : 'block';
+    });
+
+    // Change iframe source when clicking on a video link
+    videosList.addEventListener('click', (event) => {
+        if (event.target.tagName === 'A') {
+            event.preventDefault();
+            const videoUrl = event.target.getAttribute('href');
+            videoIframe.src = videoUrl;
+        }
+    });
+</script>
+
+</body>
+</html>
